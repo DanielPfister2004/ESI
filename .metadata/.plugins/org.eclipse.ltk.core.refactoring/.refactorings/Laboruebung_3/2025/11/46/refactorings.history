@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Laboruebung_3/Hardware HAL/timerB0.c&apos; to &apos;hal_timerB0.c&apos;" description="Rename resource &apos;timerB0.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Hardware HAL/timerB0.c" name="hal_timerB0.c" stamp="1762938026437" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;Laboruebung_3/Hardware HAL/timerB0.h&apos; to &apos;hal_timerB0.h&apos;" description="Rename resource &apos;timerB0.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Hardware HAL/timerB0.h" name="hal_timerB0.h" stamp="1762938051780" updateReferences="true"/>
+</session>

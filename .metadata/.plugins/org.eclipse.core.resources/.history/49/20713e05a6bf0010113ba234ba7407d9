@@ -1,0 +1,13 @@
+/*
+ * timerB0.h
+ *
+ *  Created on: 12.11.2025
+ *      Author: danie
+ */
+
+#ifndef HARDWARE_HAL_TIMERB0_H_
+#define HARDWARE_HAL_TIMERB0_H_
+
+
+
+#endif /* HARDWARE_HAL_TIMERB0_H_ */

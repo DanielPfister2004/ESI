@@ -1,0 +1,57 @@
+#include <hal_gpio.h>
+#include <hal_general.h>
+
+#include <stdint.h>  // for uint32_t or other variables
+
+void setUp();
+
+void main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+    hal_init();
+    setUp();
+
+    while (1)
+    {
+
+    }
+}
+
+#define SMCKL BIT9
+#define DV1_8 BIT6
+#define DV2_8 BIT7
+#define UP_MODE BIT4
+#define ENA_INTER BIT1
+void setUp()
+{
+    TB0CTL |= SMCKL;
+    TB0CTL |= (DV1_8 + DV2_8);
+    TB0CTL |= UP_MODE;
+    TB0CTL |= ENA_INTER;
+
+    TB0CCR0 = 19531; // 2.5MHz/(8*8) * 0,5 (sind die 2Hz)
+    TB0EX0 |= (BIT0 + BIT1 + BIT2);;  // extension
+    TB0CCTL0 = CCIE;  // activating interrupt
+
+    __enable_interrupt();
+}
+
+volatile int cnt = 0;
+#pragma vector=TIMER0_B0_VECTOR
+__interrupt void TimerB0_ISR(void)
+{
+
+    if(cnt == 0)
+    {
+        cnt = 1;
+        LCD_BL_ON();
+    }
+    else if(cnt == 1)
+    {
+        cnt = 0;
+        LCD_BL_OFF();
+    }
+
+    TB0CCTL0 &= ~CCIFG;   // Clear interrupt flag
+}
+

@@ -1,0 +1,81 @@
+#include <hal_gpio.h>
+#include <hal_general.h>
+
+#include <stdint.h>  // for uint32_t or other variables
+
+
+/**
+ * main.c
+ */
+
+void wait_in_us(int time_in_us);
+void calc_int(float a, float b);
+volatile int cnt_stop_button = 0, cnt_start_button = 0;
+
+void main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+    enableInterrupts();
+
+
+    hal_init();
+
+    while (1)
+    {
+        int cnt_start = cnt_start_button;
+        int cnt_stop = cnt_stop_button;
+        LCD_BL_ON();
+        calc_int(14.4, 24.34);
+        wait_in_us(1000);
+        LCD_BL_OFF();
+        wait_in_us(1000);
+
+        LCD_BL_ON();
+        calc_int(12.5, 25.3);
+        wait_in_us(1000);
+        LCD_BL_OFF();
+        wait_in_us(1000);
+
+    }
+}
+
+// Flaw: this function isn't at all precise
+void wait_in_us(int time_in_us) // Clockspeed 20MHz
+{
+    int clock = 200000; //200k cause
+    int i;
+
+    for(i = 0; i < clock * time_in_us; i++);
+}
+
+void calc_int(float a, float b)
+{
+    float sum = a + b;
+}
+
+
+#pragma vector=PORT1_VECTOR
+__interrupt void Port_1(void)
+{
+
+    // see if START_BUTTON was triggered
+    if (P1IFG & START_BUTTON)
+    {
+        cnt_start_button++;
+
+        // deleting Interrupt-Flag
+        P1IFG &= ~START_BUTTON;
+        int i = 0;
+        for(i = 0; i<10000; i++); // debouncing
+    }
+    else if(P1IFG & STOP_BUTTON)   // see if STOP_BUTTON was triggered
+    {
+        cnt_stop_button++;
+
+        P1IFG &= ~STOP_BUTTON;
+        int i = 0;
+        for(i = 0; i<10000; i++); // debouncing
+
+    }
+}
+
