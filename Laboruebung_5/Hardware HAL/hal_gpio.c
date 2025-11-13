@@ -28,8 +28,6 @@ void hal_GpioInit()
     // PORT 3
     P3DIR |= STEERING + THROTTLE;
     P3SEL |= STEERING + THROTTLE;
-
-    __enable_interrupt(); // global
 }
 
 

@@ -9,12 +9,11 @@
 #define HARDWARE_HAL_HAL_USCIB1_H_
 
 #include "hal_gpio.h"
-#define FREQ 100000
 
 #define CS_LOW  P8OUT &= ~LCD_CS        // set when you want to talk
 #define CS_HIGH P8OUT |= LCD_CS         // set when it should be quiet
 
-void init_GPIO();
+void init_GPIO_SPI();
 void hal_USCIB1Init();
 void hal_USCIB1Transmit();
 
@@ -34,5 +33,7 @@ typedef struct {
     unsigned char Data[256]; // Rx-Array
   } RxData;
 } USCIB1_SPICom;
+
+USCIB1_SPICom LCD;
 
 #endif /* HARDWARE_HAL_HAL_USCIB1_H_ */

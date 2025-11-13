@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="if (LCD.TxData.cnt &lt;= LCD.TxData.len)"/>
 			<item value="drive"/>
 			<item value="UCTXB"/>
 			<item value="SIMO"/>

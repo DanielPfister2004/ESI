@@ -6,6 +6,7 @@
 #include "hal_timerA1.h"
 #include "hal_usciB1.h"
 #include "hal_LCD.h"
+#include "hal_timerB0.h"
 
 USCIB1_SPICom LCD;
 
@@ -15,11 +16,14 @@ void hal_init()
     HAL_PMM_Init();
     hal_GpioInit();
     hal_ucsInit();
-    hal_timerA1_Init();
+    //timerB0_init();
+    //hal_timerA1_Init();
     //driver_ESCinit();     // for SPI deactivated
-    init_GPIO();
+    init_GPIO_SPI();
     hal_USCIB1Init();
     LCD_BL_OFF();
+
+    __enable_interrupt();
 }
 
 

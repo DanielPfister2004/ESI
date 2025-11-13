@@ -9,10 +9,9 @@ void main(void)
     hal_init();
     dl_Init();
 
-
     while (1)
     {
-        //test_steering();
+        test_steering();
         test_driving();
     }
 }

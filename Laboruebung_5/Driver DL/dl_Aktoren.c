@@ -62,10 +62,9 @@ void createPulses(int pwm, int pulseDuration)
 {
     speed_controller_impuls = 0;
     TA1CCR1 = pwm;
-    while (speed_controller_impuls <= pulseDuration)
-        ;
+    while (speed_controller_impuls <= pulseDuration);
 }
-
+// could already be AL
 void test_steering()
 {
     int i;

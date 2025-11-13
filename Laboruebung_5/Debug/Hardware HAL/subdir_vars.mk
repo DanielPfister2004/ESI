@@ -11,6 +11,7 @@ C_SRCS += \
 ../Hardware\ HAL/hal_gpio.c \
 ../Hardware\ HAL/hal_pmm.c \
 ../Hardware\ HAL/hal_timerA1.c \
+../Hardware\ HAL/hal_timerB0.c \
 ../Hardware\ HAL/hal_ucs.c \
 ../Hardware\ HAL/hal_usciB1.c \
 ../Hardware\ HAL/hal_wdt.c 
@@ -21,6 +22,7 @@ C_DEPS += \
 ./Hardware\ HAL/hal_gpio.d \
 ./Hardware\ HAL/hal_pmm.d \
 ./Hardware\ HAL/hal_timerA1.d \
+./Hardware\ HAL/hal_timerB0.d \
 ./Hardware\ HAL/hal_ucs.d \
 ./Hardware\ HAL/hal_usciB1.d \
 ./Hardware\ HAL/hal_wdt.d 
@@ -31,6 +33,7 @@ OBJS += \
 ./Hardware\ HAL/hal_gpio.obj \
 ./Hardware\ HAL/hal_pmm.obj \
 ./Hardware\ HAL/hal_timerA1.obj \
+./Hardware\ HAL/hal_timerB0.obj \
 ./Hardware\ HAL/hal_ucs.obj \
 ./Hardware\ HAL/hal_usciB1.obj \
 ./Hardware\ HAL/hal_wdt.obj 
@@ -41,6 +44,7 @@ OBJS__QUOTED += \
 "Hardware HAL\hal_gpio.obj" \
 "Hardware HAL\hal_pmm.obj" \
 "Hardware HAL\hal_timerA1.obj" \
+"Hardware HAL\hal_timerB0.obj" \
 "Hardware HAL\hal_ucs.obj" \
 "Hardware HAL\hal_usciB1.obj" \
 "Hardware HAL\hal_wdt.obj" 
@@ -51,6 +55,7 @@ C_DEPS__QUOTED += \
 "Hardware HAL\hal_gpio.d" \
 "Hardware HAL\hal_pmm.d" \
 "Hardware HAL\hal_timerA1.d" \
+"Hardware HAL\hal_timerB0.d" \
 "Hardware HAL\hal_ucs.d" \
 "Hardware HAL\hal_usciB1.d" \
 "Hardware HAL\hal_wdt.d" 
@@ -61,6 +66,7 @@ C_SRCS__QUOTED += \
 "../Hardware HAL/hal_gpio.c" \
 "../Hardware HAL/hal_pmm.c" \
 "../Hardware HAL/hal_timerA1.c" \
+"../Hardware HAL/hal_timerB0.c" \
 "../Hardware HAL/hal_ucs.c" \
 "../Hardware HAL/hal_usciB1.c" \
 "../Hardware HAL/hal_wdt.c" 

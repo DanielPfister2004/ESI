@@ -8,11 +8,9 @@
 #include "hal_gpio.h"
 #include "hal_usciB1.h"
 
-
-
 USCIB1_SPICom LCD;
 
-void init_GPIO()
+void init_GPIO_SPI()
 {
     P8SEL |= (LCD_MISO | LCD_MOSI | LCD_CLK);
     P8DIR |= (LCD_MOSI | LCD_CLK);
@@ -34,27 +32,37 @@ void hal_USCIB1Init()
     UCB1CTL0 |= UCSYNC;     // sync
     UCB1CTL1 |= UCSSEL__SMCLK;     // master clock
 
-    UCB1BR0 = FREQ / 2500000;
+    UCB1BR0 = 25;
     UCB1BR1 = 0;
 
     UCB1CTL1 &= ~UCSWRST;   // deactivating wurstbit
 
-    UCB1IE |= UCTXIE;        // receive interrupt
+    UCB1IE |= UCRXIE;        // receive interrupt
 }
 
 void hal_USCIB1Transmit()
 {
+    CS_LOW;
     LCD.Status.TxSuc = 0;
     LCD.TxData.cnt = 0;
-    while(UCB1STAT & UCBUSY);   // waits till receive or transmit is finished
-    CS_LOW;
-
-    if(LCD.TxData.cnt < LCD.TxData.len)
-    {
-        UCB1TXBUF = LCD.TxData.Data[LCD.TxData.cnt];
-        LCD.TxData.cnt++;
-    }
-
+    LCD.RxData.len = 0;
+    UCB1TXBUF = LCD.TxData.Data[LCD.TxData.cnt++];      // it already waits if this is called
 }
 
+#pragma vector=USCI_B1_VECTOR
+__interrupt void USCI_B1_ISR(void)
+{
+    if (UCB1IFG & UCRXIFG)
+    {
+        LCD.RxData.Data[LCD.RxData.len++] = UCB1RXBUF;
+
+        if (LCD.TxData.cnt < LCD.TxData.len)
+            UCB1TXBUF = LCD.TxData.Data[LCD.TxData.cnt++];
+        else
+        {
+            LCD.Status.TxSuc = 1;
+            CS_HIGH;
+        }
+    }
+}
 

@@ -6,6 +6,7 @@
 "./Hardware HAL/hal_gpio.obj"
 "./Hardware HAL/hal_pmm.obj"
 "./Hardware HAL/hal_timerA1.obj"
+"./Hardware HAL/hal_timerB0.obj"
 "./Hardware HAL/hal_ucs.obj"
 "./Hardware HAL/hal_usciB1.obj"
 "./Hardware HAL/hal_wdt.obj"

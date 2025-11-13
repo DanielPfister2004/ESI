@@ -18,6 +18,7 @@ ORDERED_OBJS += \
 "./Hardware HAL/hal_gpio.obj" \
 "./Hardware HAL/hal_pmm.obj" \
 "./Hardware HAL/hal_timerA1.obj" \
+"./Hardware HAL/hal_timerB0.obj" \
 "./Hardware HAL/hal_ucs.obj" \
 "./Hardware HAL/hal_usciB1.obj" \
 "./Hardware HAL/hal_wdt.obj" \
@@ -156,8 +157,8 @@ Laboruebung_5.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "Driver DL\dl_Aktoren.obj" "Driver DL\dl_General.obj" "Hardware HAL\hal_LCD.obj" "Hardware HAL\hal_general.obj" "Hardware HAL\hal_gpio.obj" "Hardware HAL\hal_pmm.obj" "Hardware HAL\hal_timerA1.obj" "Hardware HAL\hal_ucs.obj" "Hardware HAL\hal_usciB1.obj" "Hardware HAL\hal_wdt.obj" 
-	-$(RM) "main.d" "Driver DL\dl_Aktoren.d" "Driver DL\dl_General.d" "Hardware HAL\hal_LCD.d" "Hardware HAL\hal_general.d" "Hardware HAL\hal_gpio.d" "Hardware HAL\hal_pmm.d" "Hardware HAL\hal_timerA1.d" "Hardware HAL\hal_ucs.d" "Hardware HAL\hal_usciB1.d" "Hardware HAL\hal_wdt.d" 
+	-$(RM) "main.obj" "Driver DL\dl_Aktoren.obj" "Driver DL\dl_General.obj" "Hardware HAL\hal_LCD.obj" "Hardware HAL\hal_general.obj" "Hardware HAL\hal_gpio.obj" "Hardware HAL\hal_pmm.obj" "Hardware HAL\hal_timerA1.obj" "Hardware HAL\hal_timerB0.obj" "Hardware HAL\hal_ucs.obj" "Hardware HAL\hal_usciB1.obj" "Hardware HAL\hal_wdt.obj" 
+	-$(RM) "main.d" "Driver DL\dl_Aktoren.d" "Driver DL\dl_General.d" "Hardware HAL\hal_LCD.d" "Hardware HAL\hal_general.d" "Hardware HAL\hal_gpio.d" "Hardware HAL\hal_pmm.d" "Hardware HAL\hal_timerA1.d" "Hardware HAL\hal_timerB0.d" "Hardware HAL\hal_ucs.d" "Hardware HAL\hal_usciB1.d" "Hardware HAL\hal_wdt.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

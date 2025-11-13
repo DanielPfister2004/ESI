@@ -14,6 +14,7 @@ Hardware\ HAL/hal_general.obj: ../Hardware\ HAL/hal_ucs.h
 Hardware\ HAL/hal_general.obj: ../Hardware\ HAL/hal_timerA1.h
 Hardware\ HAL/hal_general.obj: ../Hardware\ HAL/hal_usciB1.h
 Hardware\ HAL/hal_general.obj: ../Hardware\ HAL/hal_LCD.h
+Hardware\ HAL/hal_general.obj: ../Hardware\ HAL/hal_timerB0.h
 
 ../Hardware\ HAL/hal_general.c:
 
@@ -42,4 +43,6 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include/intrinsics_leg
 ../Hardware\ HAL/hal_usciB1.h:
 
 ../Hardware\ HAL/hal_LCD.h:
+
+../Hardware\ HAL/hal_timerB0.h:
 
