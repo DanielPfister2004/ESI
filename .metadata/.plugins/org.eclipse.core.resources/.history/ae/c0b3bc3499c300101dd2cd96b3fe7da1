@@ -1,0 +1,28 @@
+/*
+ * dl_LCD.h
+ *
+ *  Created on: 17.11.2025
+ *      Author: danie
+ */
+
+#ifndef DRIVER_DL_DL_LCD_H_
+#define DRIVER_DL_DL_LCD_H_
+
+#define LCD_RESET         0xE2
+#define LCD_BIAS          0xA3
+#define ADC_SEL_NORMAL    0xA0
+#define COMMON_REVERSE    0xC8
+#define RES_RATIO         0x24
+#define ELEC_VOL_MODE     0x81
+#define ELEC_VOL_VALUE    0x0F
+#define POWER_CONT        0x2F
+#define DISPLAY_ON        0xAF
+
+#define LCD_DATA    (P8OUT = (P8OUT | LCD_DATACMD))     // A0 = 1 - Datenmodus
+#define LCD_COMMAND (P8OUT = (P8OUT & ~LCD_DATACMD))    // A0 = 0 - Kommandomodus
+
+void dl_LCDWriteCommand(unsigned char *data , unsigned char data_length);
+void dl_LCDInit(void);
+
+
+#endif /* DRIVER_DL_DL_LCD_H_ */

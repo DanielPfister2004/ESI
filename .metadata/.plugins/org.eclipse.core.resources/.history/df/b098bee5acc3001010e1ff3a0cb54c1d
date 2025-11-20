@@ -1,0 +1,115 @@
+#include "dl_LCD.h"
+#include "Hardware HAL/hal_LCD.h"
+
+extern LCD_Data_t LCD_Data;  // globale Instanz
+
+void dl_LCDInit()
+{
+    LCD_BL_ON;
+    LCD_RESET_LOW;
+
+    __delay_cycles(500000);
+    LCD_RESET_HIGH;
+
+    unsigned char init_seq[9] = {
+    LCD_RESET,
+                                  LCD_BIAS, ADC_SEL_NORMAL, COMMON_REVERSE,
+                                  RES_RATIO,
+                                  ELEC_VOL_MODE, ELEC_VOL_VALUE, POWER_CONT,
+                                  DISPLAY_ON };
+    dl_LCDWriteCommand(init_seq, sizeof(init_seq));
+
+    //dl_LCDClear();
+}
+
+void dl_LCDWriteCommand(unsigned char *data, unsigned char data_length)
+{
+    unsigned char i;
+    while (LCD_Data.Status.B.TxSuc == 0)
+        ;
+    LCD_COMMAND;
+
+    for (i = 0; i < data_length; i++)
+    {
+        LCD_Data.TxData.Data[i] = *data;
+        data++;
+    }
+
+    LCD_Data.TxData.len = data_length;
+    LCD_Data.TxData.cnt = 0;
+    hal_USCIB1Transmit();
+}
+
+
+void dl_LCDSetPosition(unsigned char page, unsigned char col)
+{
+  unsigned char cmd[3];
+  cmd[0] = 0xB0 | (page & 0x0F);                 // Page address
+  cmd[1] = 0x10 | ((col >> 4) & 0x0F);           // Column address MSB
+  cmd[2] = 0x00 | (col & 0x0F);                  // Column address LSB
+
+  dl_LCDWriteCommand(cmd, 3);
+}
+
+void dl_LCDClear(void)
+{
+  unsigned char i, j;
+  unsigned char clear_data[128];
+
+  for (i = 0; i < 128; i++) clear_data[i] = 0x00;
+
+  for (j = 0; j < 8; j++) {
+    dl_LCDSetPosition(j, 0);
+    dl_LCDWriteData(clear_data, 128);
+  }
+}
+
+void dl_LCDWriteData(unsigned char data[128], unsigned int LCD_MAX_COLM)
+{
+    int i;
+    for (i = 0; i < LCD_MAX_COLM; i++)
+            {
+                LCD_Data.TxData.Data[i] = data[i];
+            }
+
+    LCD_Data.TxData.len = LCD_MAX_COLM;
+    hal_USCIB1Transmit();
+}
+
+
+//
+//void dl_LCDClear()
+//{
+//    int j, i;
+//    for (j = 0x00; (SET_PAGE + j) <= LAST_PAGE; j++)
+//    {
+//        LCD_Pos_Array[0] = SET_PAGE + j;
+//        dl_LCDWriteCommand(LCD_Pos_Array, 3);
+//        LCD_DATA;
+//
+//        for (i = 0; i < LCD_MAX_COLM; i++)
+//        {
+//            LCD_DATA.TxData.Data[i] = 0x00;
+//        }
+//
+//        LCD_Data.TxData.Data.len = LCD_MAX_COLM;
+//        hal_USCIB1Transmit();
+//    }
+//}
+//
+//void dl_LCD_SetPosition(unsigned char page_sel, unsigned char col_sel)
+//{
+//    unsigned char msn_col = (col_sel >> 4);
+//    unsigned char lsn_col = col_sel & 0x0F;   // lsb - lowest segnificant nibble
+//
+//    LCD_Pos_Array[0] =;
+//    LCD_Pos_Array[1] =;
+//    LCD_Pos_Array[2] =;
+//
+//// LCD_ARRRAY an LCD senden
+//
+//// waits till data is transmitted
+//    while (LCD_Data.Status.B.TxSuc == 0)
+//        ;
+//}
+//

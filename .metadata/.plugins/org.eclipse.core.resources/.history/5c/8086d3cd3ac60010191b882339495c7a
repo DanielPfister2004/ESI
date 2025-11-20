@@ -1,0 +1,64 @@
+/*
+ * timerB0.c
+ *
+ *  Created on: 12.11.2025
+ *      Author: danie
+ */
+#include "hal_timerB0.h"
+#include "hal_usciB1.h"
+#include "hal_LCD.h"
+
+extern USCIB1_SPICom LCD;
+int one_hz_cnt = 0;
+
+// is a 2Hz timer
+void timerB0_init()
+{
+    TB0CTL |= TBSSEL__SMCLK;
+    TB0CTL |= ID__8;
+    TB0CTL |= MC__UP;
+
+    TB0CCR0 = 19531/2; // 2.5MHz/(8*8) * 0,5 (sind die 2Hz)
+    TB0EX0 |= TBIDEX__8;  // extension
+    TB0CCTL0 = CCIE;  // activating interrupt
+    LCD.Status.TxSuc = 1;
+}
+
+void switching_BL()
+{
+    int cnt = 0;
+    if(cnt == 0)
+    {
+        cnt = 1;
+        LCD_BL_ON();
+    }
+    else if(cnt == 1)
+    {
+        cnt = 0;
+        LCD_BL_OFF();
+    }
+}
+
+
+#pragma vector=TIMER0_B0_VECTOR
+__interrupt void TimerB0_ISR(void)
+{
+    // switching_BL();
+
+    static int internal_cnt = 0;
+
+    if(internal_cnt == 0)
+    {
+        internal_cnt++;
+        //one_hz_cnt++;
+    }
+    else if(one_hz_cnt == 1)
+    {
+        one_hz_cnt = ~one_hz_cnt;
+        internal_cnt = 0;
+    }
+
+
+   // TB0CCTL0 &= ~CCIFG;   // Clear interrupt flag
+}
+

@@ -28,6 +28,25 @@ void hal_GpioInit()
     // PORT 3
     P3DIR |= STEERING + THROTTLE;
     P3SEL |= STEERING + THROTTLE;
+
+    // SPI
+    P8DIR |= LCD_CS;
+    P8OUT &= ~LCD_CS;
+    P8DIR |= LCD_CLK;
+    P8OUT &= ~LCD_CLK;
+    P8SEL |= LCD_CLK;
+
+    P8DIR |= LCD_MOSI;
+    P8OUT &= ~LCD_MOSI;
+    P8SEL |= LCD_MOSI;
+
+    P8DIR &= ~LCD_MISO;
+    P8OUT &= ~LCD_MISO;
+    P8REN |= LCD_MISO;
+    P8SEL |= LCD_MISO;
+
+    P8DIR |= LCD_DATACMD;
+    P8OUT &= ~LCD_DATACMD;
 }
 
 

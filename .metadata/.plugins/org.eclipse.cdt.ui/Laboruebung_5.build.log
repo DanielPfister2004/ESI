@@ -3,6 +3,36 @@
 
 "C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 12 all -O 
  
+Building file: "../main.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5/Hardware HAL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5/Driver DL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5/Application AL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_1" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+Finished building: "../main.c"
+ 
+Building file: "../Driver DL/dl_Aktoren.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Driver DL/dl_Aktoren.d_raw" --obj_directory="Driver DL"  "../Driver DL/dl_Aktoren.c"
+"../Driver DL/dl_Aktoren.c", line 65: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../Driver DL/dl_Aktoren.c", line 74: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
+"../Driver DL/dl_Aktoren.c", line 79: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
+"../Driver DL/dl_Aktoren.c", line 89: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
+"../Driver DL/dl_Aktoren.c", line 94: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
+Finished building: "../Driver DL/dl_Aktoren.c"
+ 
+Building file: "../Hardware HAL/hal_general.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_general.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_general.c"
+Finished building: "../Hardware HAL/hal_general.c"
+ 
+Building file: "../Hardware HAL/hal_timerB0.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_timerB0.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_timerB0.c"
+"../Hardware HAL/hal_timerB0.c", line 34: warning #225-D: function "LCD_BL_ON" declared implicitly
+"../Hardware HAL/hal_timerB0.c", line 39: warning #225-D: function "LCD_BL_OFF" declared implicitly
+"../Hardware HAL/hal_timerB0.c", line 34: remark #1538-D: (ULP 10.1) ISR TimerB0_ISR calls function LCD_BL_ON. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../Hardware HAL/hal_timerB0.c", line 39: remark #1538-D: (ULP 10.1) ISR TimerB0_ISR calls function LCD_BL_OFF. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"..\Hardware HAL\hal_usciB1.h", line 37: remark #1535-D: (ULP 8.1) variable "LCD" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+Finished building: "../Hardware HAL/hal_timerB0.c"
+ 
 Building file: "../Hardware HAL/hal_usciB1.c"
 Invoking: MSP430 Compiler
 "C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_5" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_usciB1.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_usciB1.c"

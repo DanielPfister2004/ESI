@@ -1,0 +1,55 @@
+
+**** Build of configuration Debug for project 00_Test ****
+
+"C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 12 all -O 
+ 
+Building file: "../Laboruebung_1/main.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Laboruebung_1/main.d_raw" --obj_directory="Laboruebung_1"  "../Laboruebung_1/main.c"
+ 
+>> Compilation failure
+Laboruebung_1/subdir_rules.mk:9: recipe for target 'Laboruebung_1/main.obj' failed
+"../Laboruebung_1/main.c", line 1: fatal error #1965: cannot open source file "hal_gpio.h"
+1 catastrophic error detected in the compilation of "../Laboruebung_1/main.c".
+Compilation terminated.
+gmake: *** [Laboruebung_1/main.obj] Error 1
+Building file: "../main.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+Finished building: "../main.c"
+ 
+Building file: "../00_Test/main.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="00_Test/main.d_raw" --obj_directory="00_Test"  "../00_Test/main.c"
+Finished building: "../00_Test/main.c"
+ 
+Building file: "../Laboruebung_1/Hardware HAL/hal_general.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Laboruebung_1/Hardware HAL/hal_general.d_raw" --obj_directory="Laboruebung_1/Hardware HAL"  "../Laboruebung_1/Hardware HAL/hal_general.c"
+Finished building: "../Laboruebung_1/Hardware HAL/hal_general.c"
+ 
+Building file: "../Laboruebung_1/Hardware HAL/hal_gpio.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Laboruebung_1/Hardware HAL/hal_gpio.d_raw" --obj_directory="Laboruebung_1/Hardware HAL"  "../Laboruebung_1/Hardware HAL/hal_gpio.c"
+Finished building: "../Laboruebung_1/Hardware HAL/hal_gpio.c"
+ 
+Building file: "../Laboruebung_1/Hardware HAL/hal_pmm.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Laboruebung_1/Hardware HAL/hal_pmm.d_raw" --obj_directory="Laboruebung_1/Hardware HAL"  "../Laboruebung_1/Hardware HAL/hal_pmm.c"
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 91: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 100: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 115: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 122: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 127: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 163: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+"../Laboruebung_1/Hardware HAL/hal_pmm.c", line 173: remark #1528-D: (ULP 3.1) Detected flag polling using PMMIFG. Recommend using an interrupt combined with enter LPMx and ISR
+Finished building: "../Laboruebung_1/Hardware HAL/hal_pmm.c"
+ 
+Building file: "../Laboruebung_1/Hardware HAL/hal_wdt.c"
+Invoking: MSP430 Compiler
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/00_Test" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Laboruebung_1/Hardware HAL/hal_wdt.d_raw" --obj_directory="Laboruebung_1/Hardware HAL"  "../Laboruebung_1/Hardware HAL/hal_wdt.c"
+Finished building: "../Laboruebung_1/Hardware HAL/hal_wdt.c"
+ 
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

@@ -30,5 +30,6 @@ void dl_SetThrottle(int8_t iValue);
 
 void test_steering();
 void test_driving();
+void test_movements();
 
 #endif /* DRIVER_DL_DL_AKTOREN_H_ */

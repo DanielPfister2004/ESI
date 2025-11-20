@@ -1,0 +1,15 @@
+/*
+ * dl_LCD.h
+ *
+ *  Created on: 17.11.2025
+ *      Author: danie
+ */
+
+#ifndef DRIVER_DL_DL_LCD_H_
+#define DRIVER_DL_DL_LCD_H_
+
+void dl_LCDWriteCommand(unsigned char *data , unsigned char data_length);
+void dl_LCDInit(void);
+
+
+#endif /* DRIVER_DL_DL_LCD_H_ */

@@ -17,6 +17,7 @@ void init_GPIO_SPI()
     P8DIR &= ~LCD_MISO;
     //P8DIR |= LCD_CS;     // Richtung: Ausgang
     P8OUT |= BIT1;     // Initialzustand: HIGH (CS deaktiviert)
+
 }
 
 void hal_USCIB1Init()
@@ -28,7 +29,7 @@ void hal_USCIB1Init()
     UCB1CTL0 |= UCMSB;      // MSB first
     UCB1CTL0 &= ~UC7BIT;    // 8bit length
     UCB1CTL0 |= UCMST;      // master mode
-    UCB1CTL0 |= UCMODE0;    // 3pin mode
+    //UCB1CTL0 |= UCMODE0;    // 3pin mode
     UCB1CTL0 |= UCSYNC;     // sync
     UCB1CTL1 |= UCSSEL__SMCLK;     // master clock
 
@@ -38,6 +39,9 @@ void hal_USCIB1Init()
     UCB1CTL1 &= ~UCSWRST;   // deactivating wurstbit
 
     UCB1IE |= UCRXIE;        // receive interrupt
+
+    P9DIR |= LCD_RST;
+    P9OUT |= LCD_RST;
 }
 
 void hal_USCIB1Transmit()
@@ -46,6 +50,9 @@ void hal_USCIB1Transmit()
     LCD.Status.TxSuc = 0;
     LCD.TxData.cnt = 0;
     LCD.RxData.len = 0;
+
+    while(UCB1STAT & UCBUSY);
+
     UCB1TXBUF = LCD.TxData.Data[LCD.TxData.cnt++];      // it already waits if this is called
 }
 

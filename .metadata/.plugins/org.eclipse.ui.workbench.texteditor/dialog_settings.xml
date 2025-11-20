@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="drive"/>
+		<item key="selection" value="LCD_MOSI"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="    dl_LCDWriteText(&quot;A&quot;, 1, 1, 1);"/>
+			<item value="LCD_SPI_MOSI"/>
+			<item value="dl_LCDWriteCommand"/>
+			<item value="data_length"/>
+			<item value="hal_USCIB1Transmit"/>
+			<item value="RESET"/>
+			<item value="LCD_C"/>
+			<item value="LCD_MAX_COLM"/>
+			<item value="LCD_Data"/>
 			<item value="if (LCD.TxData.cnt &lt;= LCD.TxData.len)"/>
 			<item value="drive"/>
 			<item value="UCTXB"/>
 			<item value="SIMO"/>
 			<item value="Timer1"/>
 			<item value="XT2"/>
-			<item value="BIT"/>
-			<item value="MSP430F5335"/>
 		</list>
 		<list key="replacehistory">
+			<item value="LCD_MOSI"/>
+			<item value="LCD"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="9"/>
-		<item key="DIALOG_Y_ORIGIN" value="127"/>
+		<item key="DIALOG_X_ORIGIN" value="991"/>
+		<item key="DIALOG_Y_ORIGIN" value="200"/>
 		<item key="DIALOG_WIDTH" value="414"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

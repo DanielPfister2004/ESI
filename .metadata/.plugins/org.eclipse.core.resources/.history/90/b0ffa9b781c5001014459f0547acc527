@@ -1,0 +1,30 @@
+#include <hal_gpio.h>
+#include <hal_general.h>
+#include <dl_General.h>
+#include "hal_usciB1.h"
+#include <hal_LCD.h>
+#include <dl_LCD.h>
+
+#include <stdint.h>  // for uint32_t or other variables
+
+#define BYTE1 'AA'
+#define BYTE2 'CC'
+
+extern USCIB1_SPICom LCD;
+
+void main(void)
+{
+    LCD.Status.TxSuc = 1;
+    hal_init();
+    dl_Init();
+
+    dl_LCDWriteText("A", 1, 3, 3);
+
+    while (1)
+    {
+        // test_length is the number of the letter
+        dl_LCDWriteText("A", 1, 3, 3);
+
+    }
+}
+

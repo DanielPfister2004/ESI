@@ -15,7 +15,9 @@
 #include <msp430.h>
 
 void timerB0_init();
-extern void TimerB0_ISR(void);
+void switching_BL();
+void wait_one_sec();
+void wait_seconds(int sec);
 
 
 #endif /* HARDWARE_HAL_HAL_TIMERB0_H_ */

@@ -7,11 +7,13 @@
 
 #include "dl_General.h"
 #include "dl_Aktoren.h"
+#include "dl_LCD.h"
 
 void dl_Init(void)
 {
-    driver_ESCinit();
-    dl_SetSteering(0);
-    dl_SetThrottle(0);
+    //driver_ESCinit();
+    //dl_SetSteering(0);
+    //dl_SetThrottle(0);
+    dl_LCDInit();
 }
 

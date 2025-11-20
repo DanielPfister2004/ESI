@@ -62,36 +62,40 @@ void createPulses(int pwm, int pulseDuration)
 {
     speed_controller_impuls = 0;
     TA1CCR1 = pwm;
-    while (speed_controller_impuls <= pulseDuration);
+    while (speed_controller_impuls <= pulseDuration)
+        ;
 }
 // could already be AL
-void test_steering()
-{
-    int i;
-    for (i = -100; i <= 100; i += 2)
-    {
-        dl_SetSteering(i);
-        _delay_cycles(200000);
-    }
-    for (i = 100; i >= -100; i -= 2)
-    {
-        dl_SetSteering(i);
-        _delay_cycles(200000);
-    }
-}
 
-void test_driving()
+void test_movements()
 {
+    // steering left to right
     int i;
-    for (i = -100; i <= 100; i += 2)
+    for (i = 0; i <= 100; i += 2)
     {
-        dl_SetThrottle(i);
+        dl_SetSteering(i);
         _delay_cycles(200000);
     }
     for (i = 100; i >= -100; i -= 2)
     {
+        dl_SetSteering(i);
+        _delay_cycles(200000);
+    }
+    for (i = -100; i <= 0; i += 2)
+    {
+        dl_SetSteering(i);
+        _delay_cycles(200000);
+    }
+
+    // driving forward and backwards
+    i = 0;
+    for (i = -100; i <= 100; i += 2)
+    {
         dl_SetThrottle(i);
         _delay_cycles(200000);
+
+        if (i == 0)
+            _delay_cycles(200000000);
     }
 }
 

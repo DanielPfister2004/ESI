@@ -6,9 +6,13 @@
  */
 #include "hal_timerB0.h"
 #include "hal_usciB1.h"
+#include "hal_LCD.h"
 
 extern USCIB1_SPICom LCD;
+int one_hz_cnt = 0;
+int cnt_time = 0;
 
+// is a 2Hz timer
 void timerB0_init()
 {
     TB0CTL |= TBSSEL__SMCLK;
@@ -19,15 +23,11 @@ void timerB0_init()
     TB0EX0 |= TBIDEX__8;  // extension
     TB0CCTL0 = CCIE;  // activating interrupt
     LCD.Status.TxSuc = 1;
-
 }
 
-
-int cnt = 0;
-#pragma vector=TIMER0_B0_VECTOR
-__interrupt void TimerB0_ISR(void)
+void switching_BL()
 {
-
+    int cnt = 0;
     if(cnt == 0)
     {
         cnt = 1;
@@ -38,6 +38,38 @@ __interrupt void TimerB0_ISR(void)
         cnt = 0;
         LCD_BL_OFF();
     }
+}
+
+void wait_one_sec()
+{
+    static int internal_cnt = 0;
+
+    if(internal_cnt < 3)
+    {
+        internal_cnt++;
+        //one_hz_cnt++;
+    }
+    else
+    {
+        one_hz_cnt ^= 1;
+        internal_cnt = 0;
+        cnt_time++;
+    }
+}
+
+void wait_seconds(int sec)
+{
+    int start = cnt_time;
+    while ((cnt_time - start) < sec);
+}
+
+
+#pragma vector=TIMER0_B0_VECTOR
+__interrupt void TimerB0_ISR(void)
+{
+    // switching_BL();
+    wait_one_sec();
 
    // TB0CCTL0 &= ~CCIFG;   // Clear interrupt flag
 }
+

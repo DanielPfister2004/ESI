@@ -17,14 +17,13 @@
 #define START_BUTTON     BIT6   // EN
 #define STOP_BUTTON      BIT7   // EN
 
-
 //  #### PORT 8 #####
 #define LCD_BL   BIT0
 #define LCD_CS   BIT1
 #define LCD_CLK  BIT4
 #define LCD_MOSI BIT5
 #define LCD_MISO BIT6
-//#define LCD_DATA BIT7
+#define LCD_DATACMD BIT7
 
 
 //  #### PORT 7 #####
@@ -38,6 +37,5 @@
 #define THROTTLE BIT2
 
 void hal_GpioInit();
-
 
 #endif /* HARDWARE_HAL_HAL_GPIO_H_ */
