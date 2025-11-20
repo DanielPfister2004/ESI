@@ -10,28 +10,26 @@
 extern USCIB1_SPICom LCD;
 extern int one_hz_cnt;
 
+// '0' ... motor init off
+// '1' ... motor init on
+int activate_motor = 0;
+
 void main(void)
 {
     LCD.Status.TxSuc = 1;
     hal_init();
     dl_Init();
 
-    dl_LCDWriteText("A", 1, 1, 1);
-    dl_LCDWriteText("B", 1, 2, 2);
-    dl_LCDWriteText("C", 1, 3, 3);
-    dl_LCDWriteText("D", 1, 4, 4);
-    dl_LCDWriteText("E", 1, 5, 5);
-    dl_LCDWriteText("F", 1, 6, 6);
-    dl_LCDWriteText("G", 1, 7, 7);
-    dl_LCDWriteText("H", 1, 8, 8);
+    dl_LCDWriteText("A", 1, 1, 0);
+    dl_LCDWriteText("B", 1, 1, 20);
+    dl_LCDWriteText("Ich halt es nicht", 17, 3, 0);
+    dl_LCDWriteText("mehr aus", 8, 4, 0);
+    dl_LCDWriteText("67", 2, 6, 9);
 
     while (1)
     {
         //test_movements();
-        LCD_BL_ON();
-        wait_seconds(10);
-        LCD_BL_OFF();
-        wait_seconds(10);
+
     }
 }
 

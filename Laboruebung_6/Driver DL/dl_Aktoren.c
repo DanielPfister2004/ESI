@@ -76,27 +76,32 @@ void test_movements()
         dl_SetSteering(i);
         _delay_cycles(200000);
     }
+    wait_seconds(1);
     for (i = 100; i >= -100; i -= 2)
     {
         dl_SetSteering(i);
         _delay_cycles(200000);
     }
-    for (i = -100; i <= 0; i += 2)
+    wait_seconds(1);
+    for (i = -100; i <= 0; i += 1)
     {
         dl_SetSteering(i);
         _delay_cycles(200000);
     }
+
+    wait_seconds(1);
 
     // driving forward and backwards
     i = 0;
     for (i = -100; i <= 100; i += 2)
     {
         dl_SetThrottle(i);
-        _delay_cycles(200000);
+        _delay_cycles(2000000);
 
         if (i == 0)
-            _delay_cycles(200000000);
+            wait_seconds(1);
     }
+    dl_SetThrottle(0);
 }
 
 #pragma vector = TIMER1_A0_VECTOR

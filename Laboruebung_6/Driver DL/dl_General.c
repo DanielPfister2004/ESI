@@ -9,11 +9,16 @@
 #include "dl_Aktoren.h"
 #include "dl_LCD.h"
 
+extern int activate_motor;
+
 void dl_Init(void)
 {
-    //driver_ESCinit();
-    //dl_SetSteering(0);
-    //dl_SetThrottle(0);
+    if (activate_motor)
+    {
+        driver_ESCinit();
+        dl_SetSteering(0);
+        dl_SetThrottle(0);
+    }
     dl_LCDInit();
 }
 

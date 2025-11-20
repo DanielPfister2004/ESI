@@ -59,6 +59,7 @@ void wait_one_sec()
 
 void wait_seconds(int sec)
 {
+    // can only wait in seconds, no ms or us
     int start = cnt_time;
     while ((cnt_time - start) < sec);
 }

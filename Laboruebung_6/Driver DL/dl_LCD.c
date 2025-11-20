@@ -30,11 +30,7 @@ void dl_LCDInit()
 void LCD_pixal_text()
 {
     __delay_cycles(50000000);
-    unsigned char all_point_on[2] =
-    {
-        0xA5,
-        0xA4
-    };
+    unsigned char all_point_on[2] = { 0xA5, 0xA4 };
 
     dl_LCDWriteCommand(&all_point_on[0], 1);
     __delay_cycles(50000000);
@@ -45,7 +41,8 @@ void LCD_pixal_text()
 void dl_LCDWriteCommand(unsigned char *data, unsigned char data_length)
 {
     unsigned char i;
-    while (LCD.Status.TxSuc == 0);
+    while (LCD.Status.TxSuc == 0)
+        ;
     LCD_COMMAND;
 
     for (i = 0; i < data_length; i++)
@@ -57,7 +54,8 @@ void dl_LCDWriteCommand(unsigned char *data, unsigned char data_length)
     LCD.TxData.len = data_length;
     LCD.TxData.cnt = 0;
     hal_USCIB1Transmit();
-    while(LCD.Status.TxSuc == 0);
+    while (LCD.Status.TxSuc == 0)
+        ;
 }
 
 void dl_LCDSetPosition(unsigned char page, unsigned char col)
@@ -86,38 +84,47 @@ void dl_LCDClear(void)
         LCD_DATA;
         hal_USCIB1Transmit();
 
-        while(!LCD.Status.TxSuc);
+        while (!LCD.Status.TxSuc)
+            ;
     }
 }
 
-
-void dl_LCDWriteText(char *text, unsigned char text_length, unsigned char page, unsigned char col)
+void dl_LCDWriteText(char *text, unsigned char text_length, unsigned char page,
+                     unsigned char col)
 {
-    unsigned char i, text_length_cnt = col;
+    // max page            ...  8
+    // max symbol per page ... 20
+    unsigned char text_length_cnt;
+    unsigned char i, col_pos = col;
     LCD.TxData.len = text_length;
 
     // Dislay Cursor setzen
-    dl_LCDSetPosition(page, col);
+    dl_LCDSetPosition(page, col * fonts_width_max);
     // Wait for Display
     while (UCB1STAT & UCBUSY)
         ;
     // Auf Datenmodus wechseln
     LCD_DATA;
 
-    for (text_length_cnt = 0; text_length_cnt < LCD.TxData.len; text_length_cnt++)
+    for (text_length_cnt = 0; text_length_cnt < text_length; text_length_cnt++)
     // Textlänge des Strings abarbeiten
     {
-        for (i = 0; i < fonts_width_max; i++) // Jedes Character des Strings
+        for (i = 0; i < fonts_width_max; i++)
+        {
             LCD.TxData.Data[i] = font_table[*text][i];
+            col_pos++;
+        }
 
         LCD.TxData.len = fonts_width_max;
         hal_USCIB1Transmit();
 
         // Daten an das Display senden // Warten bis Übertragung fertig ist
-        while(!LCD.Status.TxSuc);
+        while (!LCD.Status.TxSuc);
 
         // Column „overflow“?
         // Einfügen einer Abfrage ob das Ende der Page erreicht ist
+        if (col_pos + fonts_width_max > LCD_MAX_COLM)
+            break; // oder page++ wenn nächste zeile
 
         text++;
     }

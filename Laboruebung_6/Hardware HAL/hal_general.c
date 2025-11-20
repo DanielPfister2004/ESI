@@ -10,6 +10,7 @@
 
 extern int one_hz_cnt;
 extern USCIB1_SPICom LCD;
+extern int activate_motor;
 
 void hal_init()
 {
@@ -17,10 +18,13 @@ void hal_init()
     HAL_PMM_Init();
     hal_GpioInit();
     hal_ucsInit();
+
     timerB0_init();         // 2Hz timer
-    //hal_timerA1_Init();   // throttle and sterring
     init_GPIO_SPI();
     hal_USCIB1Init();
+
+    if(activate_motor)
+        hal_timerA1_Init();   // throttle and sterring
 
     __enable_interrupt();
 }

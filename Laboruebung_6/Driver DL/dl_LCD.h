@@ -12,6 +12,7 @@
 //#include "dl_fronttable.h"
 
 #define LCD_MAX_COLM 128
+#define LCD_MAX_PAGE 8
 
 #define SET_PAGE 0xB0
 #define LAST_PAGE 0xB7
