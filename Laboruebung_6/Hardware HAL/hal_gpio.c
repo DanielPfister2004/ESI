@@ -2,17 +2,32 @@
 
 void hal_GpioInit()
 {
+    /*
+     * PxSEL ... 0 = GPIO function, 1 = peripheral function
+     * PxDIR ... 0 = input, 1 = output
+     * PxREN ... enables internal pull-up/pull-down resistor
+     * PxOUT ... 0 = pull-down, 1 = pull-up (when PxREN is set)
+     * PxIN  ... reads the current input value
+     */
+
+
     // Configure directions
     P1DIR = 0x00;
-    P1DIR &= ~(START_BUTTON + STOP_BUTTON + RPM_SENSOR + RPM_SENSOR_DIR);
+    P1DIR &= ~(START_BUTTON + STOP_BUTTON);
     P1DIR |= (I2C_INT_MOTION);
 
     // Enabling Pins
     P1REN = 0x00;
-    P1REN |= (START_BUTTON + STOP_BUTTON + RPM_SENSOR + RPM_SENSOR_DIR + I2C_INT_MOTION);
+    P1REN |= (START_BUTTON + STOP_BUTTON + I2C_INT_MOTION);
 
     // R_PullUp
-    P1OUT |= (START_BUTTON + STOP_BUTTON + RPM_SENSOR + RPM_SENSOR_DIR);
+    P1OUT |= (START_BUTTON + RPM_SENSOR_DIR);
+
+    // configuration for TA0.2 (RPM_SENSOR) and TA0.3 (RPM_SENSOR_DIR)
+    P1DIR &= ~(RPM_SENSOR + RPM_SENSOR_DIR);     // input
+    P1SEL |= (RPM_SENSOR + RPM_SENSOR_DIR);      // using timerPins
+    P1REN |= (RPM_SENSOR + RPM_SENSOR_DIR);      // enables pullUp
+    P1OUT |= (STOP_BUTTON + RPM_SENSOR);         // activates pullUp
 
     //LCD-Init
     P8DIR |= LCD_BL;

@@ -8,11 +8,10 @@
 #define BYTE2 'CC'
 
 extern USCIB1_SPICom LCD;
-extern int one_hz_cnt;
 
 // '0' ... motor init off
 // '1' ... motor init on
-int activate_motor = 0;
+int activate_motor = 1;
 
 void main(void)
 {
@@ -20,16 +19,11 @@ void main(void)
     hal_init();
     dl_Init();
 
-    dl_LCDWriteText("A", 1, 1, 0);
-    dl_LCDWriteText("B", 1, 1, 20);
-    dl_LCDWriteText("Ich halt es nicht", 17, 3, 0);
-    dl_LCDWriteText("mehr aus", 8, 4, 0);
-    dl_LCDWriteText("67", 2, 6, 9);
+    test_message();
 
     while (1)
     {
-        //test_movements();
-
+        test_movements();
+        //test_measurement_n();
     }
 }
-

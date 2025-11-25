@@ -1,0 +1,42 @@
+#include <hal_general.h>
+#include <dl_General.h>
+#include "hal_usciB1.h"
+
+
+#include <stdint.h>  // for uint32_t or other variables
+
+#define BYTE1 'AA'
+#define BYTE2 'CC'
+
+extern USCIB1_SPICom LCD;
+extern int one_hz_cnt;
+
+// '0' ... motor init off
+// '1' ... motor init on
+int activate_motor = 1;
+
+void main(void)
+{
+    LCD.Status.TxSuc = 1;
+    hal_init();
+    dl_Init();
+
+    test_message();
+    uint16_t val = 0;
+
+    while (1)
+    {
+        test_movements();
+        val = TA0CCR2;
+        char hunderter = (val / 100) % 10 + '0';
+        char zehner    = (val / 10)  % 10 + '0';
+        char einer     = val % 10 + '0';
+        char s[4];
+        s[0] = hunderter;
+        s[1] = zehner;
+        s[2] = einer;
+        s[3] = '\0';
+        dl_LCDWriteText(s, 3, 0, 0);
+    }
+}
+

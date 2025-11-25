@@ -119,7 +119,8 @@ void dl_LCDWriteText(char *text, unsigned char text_length, unsigned char page,
         hal_USCIB1Transmit();
 
         // Daten an das Display senden // Warten bis Übertragung fertig ist
-        while (!LCD.Status.TxSuc);
+        while (!LCD.Status.TxSuc)
+            ;
 
         // Column „overflow“?
         // Einfügen einer Abfrage ob das Ende der Page erreicht ist
@@ -128,4 +129,13 @@ void dl_LCDWriteText(char *text, unsigned char text_length, unsigned char page,
 
         text++;
     }
+}
+
+void test_message()
+{
+    dl_LCDWriteText("A", 1, 1, 0);
+    dl_LCDWriteText("B", 1, 1, 20);
+    dl_LCDWriteText("Ich halt es nicht", 17, 3, 0);
+    dl_LCDWriteText("mehr aus", 8, 4, 0);
+    dl_LCDWriteText("67", 2, 6, 9);
 }

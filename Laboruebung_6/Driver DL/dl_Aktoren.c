@@ -10,6 +10,8 @@
 #include <stdint.h>  // for uint32_t or other variables
 
 volatile int speed_controller_impuls = 0;
+volatile int dir = 0;
+volatile uint16_t val_n = 0;
 
 void dl_SetSteering(int8_t iValue)
 {
@@ -35,17 +37,11 @@ void dl_SetThrottle(int8_t iValue)
         iValue = -100;
 
     if (iValue > 0)
-    {
         TA1CCR1 = MinFPW + 25 * iValue;
-    }
     else if (iValue < 0)
-    {
         TA1CCR1 = MinRPW + 25 * iValue;
-    }
     else // value == 0
-    {
         TA1CCR1 = MaxBreak;
-    }
 
 }
 
@@ -104,10 +100,59 @@ void test_movements()
     dl_SetThrottle(0);
 }
 
-#pragma vector = TIMER1_A0_VECTOR
-__interrupt void TimerA0(void)
+void test_measurement_n()
+{
+    int i = 0;
+    for (i = -100; i <= 100; i += 1)
+    {
+        dl_SetThrottle(i);
+       // if (wait_seconds_elapsed(2))
+            //display_n();
+    }
+}
+
+void display_n()
+{
+    char hunderttausender = (val_n / 100000) % 10 + '0';
+    char zehntausender = (val_n / 10000) % 10 + '0';
+    char tausender = (val_n / 1000) % 10 + '0';
+    char hunderter = (val_n / 100) % 10 + '0';
+    char zehner = (val_n / 10) % 10 + '0';
+    char einer = val_n % 10 + '0';
+    char s[6];
+    s[0] = zehntausender;
+    s[1] = tausender;
+    s[2] = hunderter;
+    s[3] = zehner;
+    s[4] = einer;
+    s[5] = '\0';
+
+    dl_LCDWriteText(s, 5, 0, 0);
+}
+
+#pragma vector = TIMER1_A0_VECTOR       // sure TIMER0_A1 and not TIMER?
+__interrupt void TimerA0_compare(void)
 {
     speed_controller_impuls++;
     TA1CCTL0 &= ~CCIFG;  // clear interrupt flag
+}
+
+
+#pragma vector = TIMER0_A1_VECTOR
+__interrupt void TimerA0_capture(void)
+{
+    uint16_t source = TA0IV;
+
+    if (source == TA0IV_TACCR2)
+    {
+        val_n = TA0CCR2;
+        TA0CCTL2 &= ~CCIFG;  // optional, TA0IV löscht automatisch
+    }
+
+    if (source == TA0IV_TACCR3)
+    {
+        dir = TA0CCR3;
+        TA0CCTL3 &= ~CCIFG;  // optional
+    }
 }
 

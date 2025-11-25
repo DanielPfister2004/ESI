@@ -9,8 +9,7 @@
 #include "hal_LCD.h"
 
 extern USCIB1_SPICom LCD;
-int one_hz_cnt = 0;
-int cnt_time = 0;
+volatile static int internal_cnt = 0;
 
 // is a 2Hz timer
 void timerB0_init()
@@ -19,7 +18,7 @@ void timerB0_init()
     TB0CTL |= ID__8;
     TB0CTL |= MC__UP;
 
-    TB0CCR0 = 19531/2; // 2.5MHz/(8*8) * 0,5 (sind die 2Hz)
+    TB0CCR0 = 19531 / 2; // 2.5MHz/(8*8) * 0,5 (sind die 2Hz)
     TB0EX0 |= TBIDEX__8;  // extension
     TB0CCTL0 = CCIE;  // activating interrupt
     LCD.Status.TxSuc = 1;
@@ -28,12 +27,12 @@ void timerB0_init()
 void switching_BL()
 {
     int cnt = 0;
-    if(cnt == 0)
+    if (cnt == 0)
     {
         cnt = 1;
         LCD_BL_ON();
     }
-    else if(cnt == 1)
+    else if (cnt == 1)
     {
         cnt = 0;
         LCD_BL_OFF();
@@ -42,35 +41,44 @@ void switching_BL()
 
 void wait_one_sec()
 {
-    static int internal_cnt = 0;
-
-    if(internal_cnt < 3)
-    {
-        internal_cnt++;
-        //one_hz_cnt++;
-    }
-    else
-    {
-        one_hz_cnt ^= 1;
-        internal_cnt = 0;
-        cnt_time++;
-    }
+    int start = internal_cnt;
+    while ((internal_cnt - start) < 4)
+        ;
 }
 
 void wait_seconds(int sec)
 {
-    // can only wait in seconds, no ms or us
-    int start = cnt_time;
-    while ((cnt_time - start) < sec);
+    internal_cnt = 0;
+    while (internal_cnt < 4 * sec)
+        ;
 }
 
+int wait_seconds_elapsed(int sec)
+{
+    static unsigned int start = 0;             // persistenter Startwert
+    unsigned int ticks_needed = 4 * sec;       // 2 ISR-Ticks pro Sekunde
+    unsigned int now = internal_cnt;           // aktueller Zähler
+
+    // Overflow korrekt behandeln
+    if (now < start)  // unsigned overflow
+        start = now;
+
+    if ((now - start) >= ticks_needed)
+    {
+        start = now;  // Reset für nächsten Zeitraum
+        return 1;     // Zeit ist abgelaufen
+    }
+    else
+        return 0;     // noch nicht abgelaufen
+
+}
 
 #pragma vector=TIMER0_B0_VECTOR
 __interrupt void TimerB0_ISR(void)
 {
-    // switching_BL();
-    wait_one_sec();
+// switching_BL();
+    internal_cnt++;
 
-   // TB0CCTL0 &= ~CCIFG;   // Clear interrupt flag
+    TB0CCTL0 &= ~CCIFG;   // Clear interrupt flag
 }
 

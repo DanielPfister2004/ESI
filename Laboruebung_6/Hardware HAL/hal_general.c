@@ -19,12 +19,16 @@ void hal_init()
     hal_GpioInit();
     hal_ucsInit();
 
-    timerB0_init();         // 2Hz timer
+    //timerB0_init();         // 2Hz timer
     init_GPIO_SPI();
     hal_USCIB1Init();
 
     if(activate_motor)
+    {
+        //hal_timerA0_rpm_measurements_init();
         hal_timerA1_Init();   // throttle and sterring
+    }
+
 
     __enable_interrupt();
 }

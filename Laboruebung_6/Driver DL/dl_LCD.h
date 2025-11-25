@@ -44,5 +44,6 @@ void dl_LCDClear();
 void dl_LCD_SetPosition(unsigned char page_sel, unsigned char col_sel);
 void dl_LCDWriteText(char *text , unsigned char text_length , unsigned char page , unsigned char col);
 void LCD_pixal_text();
+void test_message();
 
 #endif /* DRIVER_DL_DL_LCD_H_ */

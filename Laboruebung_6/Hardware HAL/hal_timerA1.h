@@ -10,6 +10,6 @@
 
 
 void hal_timerA1_Init();
-
+void hal_timerA0_rpm_measurements_init();
 
 #endif /* HARDWARE_HAL_HAL_TIMERA1_H_ */
