@@ -11,7 +11,7 @@
 
 volatile int speed_controller_impuls = 0;
 volatile int dir = 0;
-volatile uint16_t val_n = 0;
+volatile unsigned int speed_old, ticks, speed = 0;
 
 void dl_SetSteering(int8_t iValue)
 {
@@ -40,7 +40,8 @@ void dl_SetThrottle(int8_t iValue)
         TA1CCR1 = MinFPW + 25 * iValue;
     else if (iValue < 0)
         TA1CCR1 = MinRPW + 25 * iValue;
-    else // value == 0
+    else
+        // value == 0
         TA1CCR1 = MaxBreak;
 
 }
@@ -106,37 +107,38 @@ void test_measurement_n()
     for (i = -100; i <= 100; i += 1)
     {
         dl_SetThrottle(i);
-       // if (wait_seconds_elapsed(2))
-            //display_n();
+        Driver_LCD_WriteUInt(speed, 0, 0);
+        _delay_cycles(2000000);
     }
 }
 
-void display_n()
+void test_measurement_n_half_speed()
 {
-    char hunderttausender = (val_n / 100000) % 10 + '0';
-    char zehntausender = (val_n / 10000) % 10 + '0';
-    char tausender = (val_n / 1000) % 10 + '0';
-    char hunderter = (val_n / 100) % 10 + '0';
-    char zehner = (val_n / 10) % 10 + '0';
-    char einer = val_n % 10 + '0';
-    char s[6];
-    s[0] = zehntausender;
-    s[1] = tausender;
-    s[2] = hunderter;
-    s[3] = zehner;
-    s[4] = einer;
-    s[5] = '\0';
-
-    dl_LCDWriteText(s, 5, 0, 0);
+    dl_SetThrottle(50);
+    Driver_LCD_WriteUInt(speed, 0, 0);
 }
 
-#pragma vector = TIMER1_A0_VECTOR       // sure TIMER0_A1 and not TIMER?
+void Driver_LCD_WriteUInt(unsigned int number, int page, int col)
+{
+    char text[11];
+    int pos = 10;
+
+    while (number > 0)
+    {
+        text[pos] = (number % 10) + '0';
+        number /= 10;
+        pos--;
+    }
+
+    dl_LCDWriteText(text, 11, page, col);
+}
+
+#pragma vector = TIMER1_A0_VECTOR
 __interrupt void TimerA0_compare(void)
 {
     speed_controller_impuls++;
     TA1CCTL0 &= ~CCIFG;  // clear interrupt flag
 }
-
 
 #pragma vector = TIMER0_A1_VECTOR
 __interrupt void TimerA0_capture(void)
@@ -145,7 +147,7 @@ __interrupt void TimerA0_capture(void)
 
     if (source == TA0IV_TACCR2)
     {
-        val_n = TA0CCR2;
+        ticks++;
         TA0CCTL2 &= ~CCIFG;  // optional, TA0IV löscht automatisch
     }
 
@@ -154,5 +156,15 @@ __interrupt void TimerA0_capture(void)
         dir = TA0CCR3;
         TA0CCTL3 &= ~CCIFG;  // optional
     }
+}
+
+#pragma vector = TIMER0_A0_VECTOR
+__interrupt void TimerA0_calc(void)
+{
+    speed = (ticks * 5 * 10 + speed_old) / 2; // (ticks * 5mm * 10Hz + speed_old) / 2
+    speed_old = speed;
+    ticks = 0;
+
+    TA0CCTL0 &= ~CCIFG;  // optional
 }
 

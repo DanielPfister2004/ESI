@@ -23,7 +23,7 @@ void main(void)
 
     while (1)
     {
-        test_movements();
-        //test_measurement_n();
+        //test_movements();
+        test_measurement_n_half_speed();
     }
 }

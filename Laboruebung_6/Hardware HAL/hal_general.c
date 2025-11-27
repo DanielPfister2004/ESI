@@ -7,6 +7,7 @@
 #include "hal_usciB1.h"
 #include "hal_LCD.h"
 #include "hal_timerB0.h"
+#include "hal_timerA0.h"
 
 extern int one_hz_cnt;
 extern USCIB1_SPICom LCD;
@@ -19,13 +20,13 @@ void hal_init()
     hal_GpioInit();
     hal_ucsInit();
 
-    //timerB0_init();         // 2Hz timer
+    timerB0_init();         // 2Hz timer
     init_GPIO_SPI();
     hal_USCIB1Init();
 
     if(activate_motor)
     {
-        //hal_timerA0_rpm_measurements_init();
+        hal_timerA0_rpm_measurements_init();
         hal_timerA1_Init();   // throttle and sterring
     }
 
