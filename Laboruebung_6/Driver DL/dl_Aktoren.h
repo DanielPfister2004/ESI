@@ -32,6 +32,7 @@ void test_steering();
 void test_driving();
 void test_movements();
 void test_measurement_n();
-void display_n();
+void test_measurement_n_half_speed();
+void Driver_LCD_WriteUInt(unsigned int number, int page, int col);
 
 #endif /* DRIVER_DL_DL_AKTOREN_H_ */
