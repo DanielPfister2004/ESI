@@ -1,0 +1,48 @@
+#include <hal_general.h>
+#include <dl_General.h>
+#include "hal_usciB1.h"     // for USCIB1_SPICom
+#include "hal_adc12.h"      // for ADC12Com
+
+#include <stdint.h>  // for uint32_t or other variables
+
+extern USCIB1_SPICom LCD;
+extern ADC12Com ADC12Data;
+
+// '0' ... motor init off
+// '1' ... motor init on
+int activate_motor = 0;
+
+void main(void)
+{
+    LCD.Status.TxSuc = 1;
+    hal_init();
+    dl_Init();
+
+    //test_message();
+
+
+    dl_LCDWriteText("Left:",  5, 0, 0);
+    dl_LCDWriteText("Right:", 6, 1, 0);
+    dl_LCDWriteText("Front:", 6, 2, 0);
+    dl_LCDWriteText("Bat:",   4, 3, 0);
+
+    while (1)
+    {
+        //test_movements();
+        //test_measurement_n_half_speed();
+
+        // Prüfen, ob neue ADC-Daten verfügbar sind
+        if (ADC12Data.Status.B.ADCrdy)
+        {
+            // Werte ans Display ausgeben
+            Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorLeft, 0, 0);
+            Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorRight, 1, 0);
+            Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorFront, 2, 0);
+            Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.VBat, 3, 0);
+
+            // Flag zurücksetzen
+            ADC12Data.Status.B.ADCrdy = 0;
+            _delay_cycles(20000);
+        }
+    }
+}

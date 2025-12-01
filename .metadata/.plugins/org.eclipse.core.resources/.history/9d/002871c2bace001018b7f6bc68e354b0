@@ -1,0 +1,21 @@
+/*
+ * al_test_implementations.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+void switching_BL()
+{
+    int cnt = 0;
+    if (cnt == 0)
+    {
+        cnt = 1;
+        LCD_BL_ON();
+    }
+    else if (cnt == 1)
+    {
+        cnt = 0;
+        LCD_BL_OFF();
+    }
+}

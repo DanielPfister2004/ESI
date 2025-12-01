@@ -17,7 +17,6 @@ void init_GPIO_SPI()
     P8DIR &= ~LCD_MISO;
     //P8DIR |= LCD_CS;     // Richtung: Ausgang
     P8OUT |= BIT1;     // Initialzustand: HIGH (CS deaktiviert)
-
 }
 
 void hal_USCIB1Init()
@@ -25,7 +24,7 @@ void hal_USCIB1Init()
     UCB1CTL1 |= UCSWRST;    // activating wurstbit
 
     UCB1CTL0 &= ~UCCKPH;    // phase
-    UCB1CTL0 |= UCCKPL;     // polarity
+    UCB1CTL0 |= UCCKPL;     // polarity (0=rise, 1=fall)
     UCB1CTL0 |= UCMSB;      // MSB first
     UCB1CTL0 &= ~UC7BIT;    // 8bit length
     UCB1CTL0 |= UCMST;      // master mode

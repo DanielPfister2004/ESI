@@ -1,10 +1,3 @@
-/*
- * hal_timerA0.c
- *
- *  Created on: 27.11.2025
- *      Author: danie
- */
-
 #include <msp430.h>
 #include "hal_timerA0.h"
 

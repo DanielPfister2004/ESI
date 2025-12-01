@@ -10,7 +10,6 @@ void hal_GpioInit()
      * PxIN  ... reads the current input value
      */
 
-
     // Configure directions
     P1DIR = 0x00;
     P1DIR &= ~(START_BUTTON + STOP_BUTTON);
@@ -44,7 +43,8 @@ void hal_GpioInit()
     P3DIR |= STEERING + THROTTLE;
     P3SEL |= STEERING + THROTTLE;
 
-    // SPI
+    // ##### SPI #####
+    // WARNING: MOSI and CLK on display are switched
     P8DIR |= LCD_CS;
     P8OUT &= ~LCD_CS;
     P8DIR |= LCD_CLK;

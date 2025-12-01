@@ -1,0 +1,12 @@
+/*
+ * hal_adc.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+
+void hal_ADC12Init()
+{
+    ADC12CTL0 |= ADC12S
+}

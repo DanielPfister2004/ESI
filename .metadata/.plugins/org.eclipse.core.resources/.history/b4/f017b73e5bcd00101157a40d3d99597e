@@ -1,0 +1,13 @@
+/*
+ * hal_adc.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+#include <msp430.h>
+
+void hal_ADC12Init()
+{
+    ADC12CTL0 |= ADC12
+}

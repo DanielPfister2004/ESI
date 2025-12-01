@@ -1,0 +1,18 @@
+/*
+ * hal_adc.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+#include "hal_adc12.h"
+
+void hal_ADC12Init()
+{
+    ADC12CTL0 |= ADC12SHT0_11;      // 1024 cyc
+    ADC12CTL0 &= ~ADC12SHT0_7;      // on rising edge from timer B0
+    //ADC12CTL0 &= ~ADC12SHT0_6;      // using 1,5V - if 2,5V or 1,5V toggle this on and commit ADC12RFON out
+    ADC12CTL0 |= ADC12RFON;         // using Vref
+    ADC12CTL0 |= ADC12ON;           // turning ADC on
+
+}

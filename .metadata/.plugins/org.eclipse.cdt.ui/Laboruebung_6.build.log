@@ -3,51 +3,14 @@
 
 "C:\\ti\\ccs1281\\ccs\\utils\\bin\\gmake" -k -j 12 all -O 
  
-Building file: "../main.c"
+Building file: "../Hardware HAL/hal_gpio.c"
 Invoking: MSP430 Compiler
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6/Hardware HAL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6/Driver DL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6/Application AL" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_1" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
-"../main.c", line 22: warning #225-D: function "test_message" declared implicitly
-"../main.c", line 14: remark #1535-D: (ULP 8.1) variable "activate_motor" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
-Finished building: "../main.c"
- 
-Building file: "../Driver DL/dl_General.c"
-Invoking: MSP430 Compiler
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Driver DL/dl_General.d_raw" --obj_directory="Driver DL"  "../Driver DL/dl_General.c"
-Finished building: "../Driver DL/dl_General.c"
- 
-Building file: "../Driver DL/dl_Aktoren.c"
-Invoking: MSP430 Compiler
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Driver DL/dl_Aktoren.d_raw" --obj_directory="Driver DL"  "../Driver DL/dl_Aktoren.c"
-"../Driver DL/dl_Aktoren.c", line 61: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
-"../Driver DL/dl_Aktoren.c", line 75: warning #225-D: function "wait_seconds" declared implicitly
-"../Driver DL/dl_Aktoren.c", line 73: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
-"../Driver DL/dl_Aktoren.c", line 79: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
-"../Driver DL/dl_Aktoren.c", line 85: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
-"../Driver DL/dl_Aktoren.c", line 95: remark #1527-D: (ULP 2.1) Detected SW delay loop using __delay_cycles. Recommend using a timer module instead
-"../Driver DL/dl_Aktoren.c", line 130: warning #225-D: function "dl_LCDWriteText" declared implicitly
-"../Driver DL/dl_Aktoren.c", line 116: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-"../Driver DL/dl_Aktoren.c", line 117: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-"../Driver DL/dl_Aktoren.c", line 118: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-"../Driver DL/dl_Aktoren.c", line 119: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-"../Driver DL/dl_Aktoren.c", line 120: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-"../Driver DL/dl_Aktoren.c", line 121: remark #1530-D: (ULP 5.1) Detected modulo operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
-Finished building: "../Driver DL/dl_Aktoren.c"
- 
-Building file: "../Hardware HAL/hal_general.c"
-Invoking: MSP430 Compiler
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_general.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_general.c"
-Finished building: "../Hardware HAL/hal_general.c"
- 
-Building file: "../Hardware HAL/hal_timerB0.c"
-Invoking: MSP430 Compiler
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_timerB0.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_timerB0.c"
-"../Hardware HAL/hal_timerB0.c", line 45: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
-"../Hardware HAL/hal_timerB0.c", line 52: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
-Finished building: "../Hardware HAL/hal_timerB0.c"
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --include_path="C:/ti/ccs1281/ccs/ccs_base/msp430/include" --include_path="C:/Users/danie/Desktop/FH Joanneum/ECE3/ESI/Laboruebung_6" --include_path="C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="Hardware HAL/hal_gpio.d_raw" --obj_directory="Hardware HAL"  "../Hardware HAL/hal_gpio.c"
+Finished building: "../Hardware HAL/hal_gpio.c"
  
 Building target: "Laboruebung_6.out"
 Invoking: MSP430 Linker
-"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"Laboruebung_6.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1281/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1281/ccs/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Laboruebung_6_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "Laboruebung_6.out" "./main.obj" "./Driver DL/dl_Aktoren.obj" "./Driver DL/dl_General.obj" "./Driver DL/dl_LCD.obj" "./Hardware HAL/hal_LCD.obj" "./Hardware HAL/hal_general.obj" "./Hardware HAL/hal_gpio.obj" "./Hardware HAL/hal_pmm.obj" "./Hardware HAL/hal_timerA1.obj" "./Hardware HAL/hal_timerB0.obj" "./Hardware HAL/hal_ucs.obj" "./Hardware HAL/hal_usciB1.obj" "./Hardware HAL/hal_wdt.obj" "../lnk_msp430f5335.cmd"  -llibmath.a -llibc.a 
+"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/bin/cl430" -vmspx --data_model=restricted -Ooff --opt_for_speed=0 --use_hw_mpy=F5 --advice:power=all --define=__MSP430F5335__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 -z -m"Laboruebung_6.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/ti/ccs1281/ccs/ccs_base/msp430/include" -i"C:/ti/ccs1281/ccs/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Laboruebung_6_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "Laboruebung_6.out" "./main.obj" "./Driver DL/dl_Aktoren.obj" "./Driver DL/dl_General.obj" "./Driver DL/dl_LCD.obj" "./Hardware HAL/hal_LCD.obj" "./Hardware HAL/hal_general.obj" "./Hardware HAL/hal_gpio.obj" "./Hardware HAL/hal_pmm.obj" "./Hardware HAL/hal_timerA0.obj" "./Hardware HAL/hal_timerA1.obj" "./Hardware HAL/hal_timerB0.obj" "./Hardware HAL/hal_ucs.obj" "./Hardware HAL/hal_usciB1.obj" "./Hardware HAL/hal_wdt.obj" "../lnk_msp430f5335.cmd"  -llibmath.a -llibc.a 
 <Linking>
 remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
 remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
