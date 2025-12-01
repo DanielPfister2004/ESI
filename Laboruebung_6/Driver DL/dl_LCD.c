@@ -31,7 +31,6 @@ void LCD_pixal_text()
 {
     __delay_cycles(50000000);
     unsigned char all_point_on[2] = { 0xA5, 0xA4 };
-
     dl_LCDWriteCommand(&all_point_on[0], 1);
     __delay_cycles(50000000);
     dl_LCDWriteCommand(&all_point_on[1], 1);
@@ -125,7 +124,7 @@ void dl_LCDWriteText(char *text, unsigned char text_length, unsigned char page,
         // Column „overflow“?
         // Einfügen einer Abfrage ob das Ende der Page erreicht ist
         if (col_pos + fonts_width_max > LCD_MAX_COLM)
-            break; // oder page++ wenn nächste zeile
+            break; // doesn't write - cutes of the text
 
         text++;
     }

@@ -1,0 +1,21 @@
+/*
+ * al_test_implementations.h
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+#ifndef APPLICATION_AL_AL_TEST_IMPLEMENTATIONS_H_
+#define APPLICATION_AL_AL_TEST_IMPLEMENTATIONS_H_
+
+#include "Hardware HAL/hal_LCD.h"
+#include "Driver DL/dl_Aktoren.h"
+#include "Hardware HAL/hal_adc12.h"
+
+void switching_BL();
+void showDistance();
+void test_measurement_n_half_speed();
+void test_measurement_n();
+void test_movements();
+
+#endif /* APPLICATION_AL_AL_TEST_IMPLEMENTATIONS_H_ */

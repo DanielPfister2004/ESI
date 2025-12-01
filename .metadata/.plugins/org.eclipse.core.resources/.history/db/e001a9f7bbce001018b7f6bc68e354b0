@@ -1,0 +1,104 @@
+/*
+ * al_test_implementations.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+#include "al_test_implementations.h"
+
+extern ADC12Com ADC12Data;
+extern volatile unsigned int speed;
+
+void switching_BL()
+{
+    int cnt = 0;
+    if (cnt == 0)
+    {
+        cnt = 1;
+        LCD_BL_ON();
+    }
+    else if (cnt == 1)
+    {
+        cnt = 0;
+        LCD_BL_OFF();
+    }
+}
+
+void showDistance()
+{
+    // Prüfen, ob neue ADC-Daten verfügbar sind
+    if (ADC12Data.Status.B.ADCrdy)
+    {
+        // Werte ans Display ausgeben
+        Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorLeft, 0, 0);
+        Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorRight, 1, 0);
+        Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.SensorFront, 2, 0);
+        Driver_LCD_WriteUInt(ADC12Data.Data.Sensor.VBat, 3, 0);
+
+        // Flag zurücksetzen
+        ADC12Data.Status.B.ADCrdy = 0;
+
+        dl_LCDWriteText("Left:", 5, 0, 0);
+        dl_LCDWriteText("Right:", 6, 1, 0);
+        dl_LCDWriteText("Front:", 6, 2, 0);
+        dl_LCDWriteText("Bat:", 4, 3, 0);
+
+        // genau Messung mit Maßband machen, es gibt keine Formel dafür
+
+    }
+}
+
+void test_movements()
+{
+    // steering left to right
+    int i;
+    for (i = 0; i <= 100; i += 2)
+    {
+        dl_SetSteering(i);
+        _delay_cycles(200000);
+    }
+    wait_seconds(1);
+    for (i = 100; i >= -100; i -= 2)
+    {
+        dl_SetSteering(i);
+        _delay_cycles(200000);
+    }
+    wait_seconds(1);
+    for (i = -100; i <= 0; i += 1)
+    {
+        dl_SetSteering(i);
+        _delay_cycles(200000);
+    }
+
+    wait_seconds(1);
+
+    // driving forward and backwards
+    i = 0;
+    for (i = -100; i <= 100; i += 2)
+    {
+        dl_SetThrottle(i);
+        _delay_cycles(2000000);
+
+        if (i == 0)
+            wait_seconds(1);
+    }
+    dl_SetThrottle(0);
+}
+
+void test_measurement_n()
+{
+    int i = 0;
+    for (i = -100; i <= 100; i += 1)
+    {
+        dl_SetThrottle(i);
+        Driver_LCD_WriteUInt(speed, 0, 0);
+        _delay_cycles(2000000);
+    }
+}
+
+void test_measurement_n_half_speed()
+{
+    dl_SetThrottle(50);
+    Driver_LCD_WriteUInt(speed, 0, 0);
+}

@@ -1,0 +1,32 @@
+/*
+ * hal_adc.c
+ *
+ *  Created on: 29.11.2025
+ *      Author: danie
+ */
+
+#include "hal_adc12.h"
+
+void hal_ADC12Init()
+{
+    ADC12CTL0 |= ADC12SHT0_11;      // 1024 cyc
+    ADC12CTL0 &= ~ADC12SHT0_7;      // on rising edge from timer B0
+    //ADC12CTL0 &= ~ADC12SHT0_6;      // using 1,5V - if 2,5V or 1,5V toggle this on and commit ADC12RFON out
+    ADC12CTL0 |= ADC12REFON;         // using Vref
+    ADC12CTL0 |= ADC12ON;           // turning ADC on
+    ADC12CTL0 &= ~ADC12ENC;         // ### disable conversion -> must later on be enabled ###
+
+    ADC12CTL1 |= ADC12SHS_3;        // hopefully this is the timerB0, idk where to find the corresponding timers
+    ADC12CTL1 |= ADC12SHP;          // SAMPCON signal from sample timer
+    ADC12CTL1 |= ADC12DIV_3;        // prescaler 3 cause I want 1,6us
+    ADC12CTL1 |= ADC12SSEL_3       // smckl ich mag nicht mehr
+    ADC12CTL1 |= ADC12CONSEQ_3;     // repeated sequence
+
+    ADC12CTL2 |= ADC12TCOFF;        // temp sensor off
+    ADC12CTL2 |= ADC12RES_2;        // 12 bit resolution
+
+    ADC12MCTL0 |= (ADC12INCH0 | ADC12INCH1 | ADC12INCH2);   // A0, A1, A2
+    ADC12MCTL0 |= ADC12SREF_0;                              // idk
+
+    ADC12IE |= (ADC12IE0 | ADC12IE1 | ADC12IE2);            // enable interrupt
+}
